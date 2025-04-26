@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us & Factorial Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-6 text-center text-2xl font-bold">
+    About Us & Factorial Calculator
+  </header>
+
+  <!-- About Us Section -->
+  <section class="p-6">
+    <h2 class="text-xl font-semibold mb-4">Our Company</h2>
+    <p class="mb-4">We are a tech-driven team passionate about solving real-world problems through innovative software solutions. Our company was founded in 2020 with the vision to make the digital world smarter and more accessible.</p>
+
+    <h2 class="text-xl font-semibold mb-4">Team Members</h2>
+    <ul class="list-disc ml-6 mb-4">
+      <li>Jane Doe - CEO</li>
+      <li>John Smith - Lead Developer</li>
+      <li>Mary Johnson - UI/UX Designer</li>
+    </ul>
+
+    <h2 class="text-xl font-semibold mb-4">Contact Information</h2>
+    <p>Email: contact@ourcompany.com</p>
+    <p>Phone: +1 (123) 456-7890</p>
+  </section>
+
+  <!-- Factorial Calculator -->
+  <section class="p-6 bg-white shadow-md mx-4 my-6 rounded-lg">
+    <h2 class="text-xl font-semibold mb-4 text-center">Factorial Calculator</h2>
+
+    <div class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-4">
+      <input id="numberInput" type="number" min="0" class="p-2 border rounded w-64" placeholder="Enter a positive integer">
+      <select id="method" class="p-2 border rounded w-40">
+        <option value="iterative">Iterative</option>
+        <option value="recursive">Recursive</option>
+      </select>
+      <button onclick="calculateFactorial()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Calculate
+      </button>
+    </div>
+
+    <div id="result" class="text-center text-lg mt-4 font-medium"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center p-4 text-sm">
+    &copy; 2025 Our Company. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function calculateFactorial() {
+      const number = parseInt(document.getElementById('numberInput').value);
+      const method = document.getElementById('method').value;
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(number) || number < 0) {
+        resultDiv.textContent = "Please enter a valid non-negative integer.";
+        return;
+      }
+
+      let result;
+      if (method === "iterative") {
+        result = iterativeFactorial(number);
+      } else {
+        result = recursiveFactorial(number);
+      }
+
+      resultDiv.textContent = `Factorial of ${number} is ${result} (${method} method)`;
+    }
+
+    function iterativeFactorial(n) {
+      let fact = 1;
+      for (let i = 1; i <= n; i++) {
+        fact *= i;
+      }
+      return fact;
+    }
+
+    function recursiveFactorial(n) {
+      if (n === 0 || n === 1) return 1;
+      return n * recursiveFactorial(n - 1);
+    }
+  </script>
+</body>
+</html>
